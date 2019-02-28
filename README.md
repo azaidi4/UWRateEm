@@ -7,3 +7,4 @@
 <li>Uses <b>React Native</b> for the UI</li>
 <li>Built using <a href="https://expo.io/tools#cli">Expo CLI</a>
 </ul>
+![](demo.gif)
