@@ -4,7 +4,8 @@
 # Features
 <ul>
 <li>Uses <b>Firebase</b> for the backend</li>
-<li>Uses <b>React Native</b> for the UI</li>
+<li>Uses <b>React Native</b> for the UI and authentication</li>
+<li>Uses <b>Algolia</b> for realtime searching
 <li>Built using <a href="https://expo.io/tools#cli">Expo CLI</a>
 </ul>
 
