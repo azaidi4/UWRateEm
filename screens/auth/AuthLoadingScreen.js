@@ -2,17 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
 import { Header } from 'react-native-elements';
 
-import firebase from 'firebase'
+import firebase from '../../firebase'
 
 export default class AuthLoadingScreen extends React.Component {
     componentDidMount() {
       firebase.auth().onAuthStateChanged(user => {
-        this.props.navigation.navigate(user ? 'App' : 'Auth')
+        if (user) {
+          if (user.isAnonymous)
+            this.props.navigation.navigate('Anon')
+          else 
+            this.props.navigation.navigate('App')
+        }
+        else
+          this.props.navigation.navigate('Auth')
       })
     }
     render() {
       return (
-        <View>
+        <View style={{flex: 1}}>
         <Header
           containerStyle={{backgroundColor: "#c5050c"}}
           leftComponent={{ icon: 'menu', color: '#fff'}}
@@ -23,8 +30,10 @@ export default class AuthLoadingScreen extends React.Component {
                           /> 
                         }
           />
-            <Text style={styles.container}>Loading</Text>
-            <ActivityIndicator size="large" />
+          <View style={styles.container}>
+            <Text style={{fontSize: 30}}>Loading</Text>
+            <ActivityIndicator size="large"/>
+          </View>
         </View>
       )
     }
