@@ -13,7 +13,12 @@ export default class AddCourseScreen extends React.Component {
     static navigationOptions = {
         drawerLabel: () => null
     }
-
+    componentDidUpdate(prevProps, prevState) {
+        coursename = this.props.navigation.getParam('courseName', 'Enter Course Name')
+        if (prevState.courseName != coursename) {
+            this.setState({courseName: coursename})
+        }
+    }
     onSubmit = () => {
         db.collection('courses').add({
             courseName: this.state.courseName,
