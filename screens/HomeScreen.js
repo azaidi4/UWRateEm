@@ -56,7 +56,7 @@ export default class HomeScreen extends React.Component {
       return this.state.courses.map((l, i) => (
         <ListItem
           key={i}
-          leftAvatar={{ source: { uri: this.generateAvatar(l) } }}
+          leftAvatar={{ source: { uri: l.avatar_url } }}
           title={l.courseName}
           containerStyle={{ backgroundColor: '#dadfe1' }}
           onPress= {() => this.props.navigation.navigate('Course', {coursename: l.courseName})}
@@ -66,9 +66,9 @@ export default class HomeScreen extends React.Component {
     else if (!firebase.auth().currentUser.isAnonymous){
       return <View style={{alignItems: 'center', paddingTop: 20}}>
         <Button
-        title='Add New Course?'
-        color='#c5050c'
-        onPress={() => this.props.navigation.navigate('AddCourse', {courseName: this.state.search})}
+          title='Add New Course?'
+          buttonStyle={{backgroundColor: '#c5050c'}}
+          onPress={() => this.props.navigation.navigate('AddCourse', {courseName: this.state.search})}
         />
       </View>
     }

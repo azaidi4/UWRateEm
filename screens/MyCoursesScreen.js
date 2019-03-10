@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import { Header, ListItem, Button, SearchBar } from 'react-native-elements';
+import { Text, View, Image, ScrollView } from 'react-native';
+import { Header, ListItem, SearchBar } from 'react-native-elements';
 
 import firebase from '../firebase'
 import algoliasearch from 'algoliasearch'
@@ -73,8 +73,7 @@ export default class MyCoursesScreen extends React.Component{
       return this.state.searchCourses.map((l, i) => (
         <ListItem
           key={i}
-          leftAvatar={{ source: { uri: l.avatar_url + l.courseName + '&background=' + 
-          Math.floor(Math.random()*16777215).toString(16) } }}
+          leftAvatar={{ source: { uri: l.avatar_url }}}
           title={l.courseName}
           subtitle={'Add to My Courses'}
           onPress={() => this.addToMyCourses(l.courseName)}
@@ -86,8 +85,7 @@ export default class MyCoursesScreen extends React.Component{
       return this.state.myCourses.map((l, i) => (
         <ListItem
           key={i}
-          leftAvatar={{ source: { uri: l.avatar_url + l.courseName + '&background=' + 
-          Math.floor(Math.random()*16777215).toString(16) } }}
+          leftAvatar={{ source: { uri: l.avatar_url } }}
           title={l.courseName}
           containerStyle={{ backgroundColor: '#dadfe1' }}
           onPress={() => this.props.navigation.navigate('Course', {coursename: l.courseName})}
