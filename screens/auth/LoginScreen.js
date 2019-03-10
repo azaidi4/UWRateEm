@@ -21,9 +21,24 @@ export default class LoginScreen extends React.Component {
         .then(() => {}, (error) => { Alert.alert(error.message); });
     }
     skipSignupPress() {
-        firebase.auth().signInAnonymously().catch((error) => {
-            console.log(error.message)
-        })
+        Alert.alert(
+            'Please Note',
+            'You will only be able to view courses and course ratings. To add courses and rate \'em please sign in! ',
+            [
+                {
+                    text: 'Create an Account',
+                    onPress: () => {this.props.navigation.navigate('SignUp')}
+                },  
+                {
+                    text: 'Continue Anyway',
+                    style: 'cancel',
+                    onPress: () => {firebase.auth().signInAnonymously().catch((error) => {
+                        console.log(error.message)
+                    })}
+                }
+            ]
+        )
+        
     }
 
     render() {
@@ -71,6 +86,12 @@ export default class LoginScreen extends React.Component {
                         />
                 </View>
                 
+                <Button title="Forgot Password?" 
+                    onPress={() => this.props.navigation.navigate('ForgotPassword')} 
+                    buttonStyle={{backgroundColor: '#646569'}}
+                    containerStyle={{paddingBottom: 10}}
+                    />
+
                 <Button title="Skip Sign In..." 
                     onPress={() => this.skipSignupPress()} 
                     buttonStyle={{backgroundColor: '#646569'}}
